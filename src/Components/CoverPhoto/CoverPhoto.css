@@ -1,0 +1,19 @@
+div.cover-photo {
+	text-align: center;
+
+	/* top: 0; */
+	background-image: url(./Rabat.JPG);
+
+	height: 100%;
+	width: 100%;
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-color: #bbbbff;
+}
+
+h1 {
+	margin: 0;
+}
