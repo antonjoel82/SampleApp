@@ -1,6 +1,5 @@
 import React from "react";
 import Box from '@material-ui/core/Box';
-import {VIDEO_FRAME} from "../../constants.js";
 
 import "../../utils.css";
 

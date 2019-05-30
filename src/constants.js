@@ -1,8 +1,17 @@
-export const VIDEO_FRAME = {
-	DEF_WIDTH: 560,
-	DEF_HEIGHT: 315,
-	DEF_WH_RATIO: 560/315,
-	DEF_HW_RATIO: 315/560,
-	MIN_WIDTH: 224,
-	MIN_HEIGHT: 122
+export const SourceType = {
+	VIDEO: "VIDEO",
+	IMAGE: "IMAGE",
+	DOCUMENT: "DOCUMENT"
+};
+
+export const Route = {
+	SIGN_IN: "SIGN_IN",
+	SIGN_OUT: "SIGN_OUT",
+	REGISTER: "REGISTER",
+	HOME: "HOME"
+};
+
+export const UserStatus = {
+	SIGNED_IN: "SIGNED_IN",
+	GUEST: "GUEST"
 };
