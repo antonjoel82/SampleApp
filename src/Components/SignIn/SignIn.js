@@ -38,7 +38,7 @@ export default function SignIn({onSignIn}) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <fieldset className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -87,7 +87,7 @@ export default function SignIn({onSignIn}) {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </fieldset>
       </div>
       <Box mt={5}>
         <MadeWithLove />

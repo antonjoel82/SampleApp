@@ -18,6 +18,7 @@ const useStylesSignIn = makeStyles(theme => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
+    border: 'none',
     marginTop: theme.spacing(1),
   },
   submit: {

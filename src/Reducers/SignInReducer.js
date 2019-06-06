@@ -12,6 +12,7 @@ export const signIn = (state=baseStateSignIn, action={}) => {
 			if (user.id) {
 				return Object.assign({}, state, {signedIn: true, user: user});
 			} else {
+				window.alert("Credentials were not valid. Please try again!");
 				return state;
 			}
 		case SIGN_OUT:

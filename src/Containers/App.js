@@ -29,13 +29,16 @@ const mapDispatchToProps = (dispatch) => {
 
 class App extends React.Component {
   render() {
-    const {onSignIn} = this.props;
+    const {onSignIn, signedIn, user} = this.props;
 
     return (
       <div>
         <StickyBar />
-        {/* <ResourceGrid resources={resources} /> */}
-        <SignIn onSignIn={onSignIn} />
+        {
+          signedIn
+            ? <ResourceGrid resources={resources} />
+            : <SignIn onSignIn={onSignIn} />
+        }
       </div>
     );
   }

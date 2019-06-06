@@ -15,3 +15,24 @@ export const requestSignIn = (login, password) => {
 		}
 	}
 }
+
+export const requestSignOut = () => {
+	return {
+		type: SIGN_OUT,
+		payload: {}
+	}
+}
+
+export const requestRegister = (name, email, username, password) => {
+	//
+	//Sign in code goes here.
+	//
+
+	return {
+		type: REGISTER,
+		payload: {
+			name, email, username, password
+		}
+	}
+}
+
