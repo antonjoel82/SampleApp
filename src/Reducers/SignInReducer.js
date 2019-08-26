@@ -6,9 +6,11 @@ const baseStateSignIn = {
 };
 
 export const signIn = (state = baseStateSignIn, action = {}) => {
+  let user = null;
+
   switch (action.type) {
     case SIGN_IN:
-      const user = action.payload.user;
+      user = action.payload.user;
       if (user.id) {
         return Object.assign({}, state, { signedIn: true, user: user });
       } else {

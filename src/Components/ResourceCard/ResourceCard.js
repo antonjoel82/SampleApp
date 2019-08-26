@@ -36,11 +36,11 @@ const ResourceCard = ({ title, src, srcType, dateCreated }) => {
           src={src}
           title={title /* update this with proper resource title */}
           allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-          allowfullscreen='true'
+          allowFullScreen
         />
       </Box>
       <CardContent>
-        <Typography variant='body' component='p'>
+        <Typography variant='body1' component='p'>
           This is the basic summary of the resource.
         </Typography>
       </CardContent>

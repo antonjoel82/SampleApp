@@ -23,10 +23,12 @@ export const requestSignOut = () => {
   };
 };
 
-export const requestRegister = (name, email, username, password) => {
+export const requestRegister = (firstName, lastName, email, username, password) => {
   //
   // Sign in code goes here.
   //
+
+  const name = { first: firstName, last: lastName };
 
   return {
     type: REGISTER,

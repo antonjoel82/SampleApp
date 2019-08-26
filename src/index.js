@@ -1,25 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Containers/App';
-import * as serviceWorker from './serviceWorker';
+import Root from './Components/Root/Root.js';
+import * as serviceWorker from './serviceWorker.js';
+import configureStore, { history } from './configureStore.js';
 
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { createLogger } from 'redux-logger';
-
-import { signIn } from './Reducers/SignInReducer.js';
-
-const logger = createLogger();
-
-const baseReducers = combineReducers({ signIn });
-const store = createStore(baseReducers, applyMiddleware(logger));
+const store = configureStore(/* INITIAL STATE */);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-  , document.getElementById('root')
+  <Root store={store} history={history} />, document.getElementById('root')
 );
 
 serviceWorker.unregister();

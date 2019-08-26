@@ -2,22 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import MenuIcon from '@material-ui/icons/Menu';
-import IconButton from '@material-ui/core/IconButton';
+import NavMenu from '../NavMenu/NavMenu.js';
 
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
   },
   title: {
     display: 'none',
@@ -97,36 +92,15 @@ ElevationScroll.propTypes = {
   window: PropTypes.func
 };
 
-export default function StickyBar (props) {
+function StickyBar (props) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  function handleClick (event) {
-    setAnchorEl(event.currentTarget);
-  }
-
-  function handleClose () {
-    setAnchorEl(null);
-  }
 
   return (
     <>
       <ElevationScroll {...props}>
         <AppBar>
           <Toolbar>
-            <IconButton
-              edge='start'
-              className={classes.menuButton}
-              color='inherit'
-              aria-label='Open drawer'
-              onClick={handleClick}
-              anchorEl={anchorEl}
-            >
-              <MenuIcon />
-              <MenuItem onClick={handleClose}>Register</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
-            </IconButton>
+            <NavMenu />
             <Typography variant='h6'>The Ultimate Resource</Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -147,3 +121,5 @@ export default function StickyBar (props) {
     </>
   );
 }
+
+export default StickyBar;

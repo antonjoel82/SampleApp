@@ -12,14 +12,15 @@ class ResourceGrid extends React.Component {
           this.props.resources.map((res, i) => {
             return (
               <ResourceCard
+                key={res.id}
                 title={res.title}
                 src={res.src}
                 srcType={res.srcType}
               />
             // <VideoFrame
-            // 	src={res.src}
-            // 	width={res.width}
-            // 	height={res.height}
+            // src={res.src}
+            // width={res.width}
+            // height={res.height}
             // />
             );
           })
