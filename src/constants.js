@@ -15,3 +15,5 @@ export const UserStatus = {
   SIGNED_IN: 'SIGNED_IN',
   GUEST: 'GUEST'
 };
+
+export const ENDPOINT = 'http://localhost:3001';

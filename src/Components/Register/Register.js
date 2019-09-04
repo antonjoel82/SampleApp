@@ -2,34 +2,40 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import { NavLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
+
+import { ENDPOINT } from '../../constants';
+
+import fetch from 'isomorphic-fetch';
+import promise from 'es6-promise';
+
+import TextEntry from '../TextEntry/TextEntry.js';
+
+import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
+
+promise.polyfill();
 
 function Copyright () {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        Your Website
-      </Link>{' '}
+      <NavLink to='/'>
+        UltiDB
+      </NavLink>{' '}
       {new Date().getFullYear()}
-      {'. Built with '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        Material-UI.
-      </Link>
     </Typography>
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white
@@ -52,97 +58,172 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2)
   }
-}));
+});
 
-export default function SignUp () {
-  const classes = useStyles();
+class Register extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      firstName: '',
+      lastName: '',
+      username: '',
+      email: '',
+      password: ''
+    };
+  }
 
-  return (
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component='h1' variant='h5'>
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete='fname'
+  validateRegister = () => {
+    const { firstName, lastName, email, username, password } = this.state;
+    if (!(firstName && lastName && email && username && password)) {
+      return { valid: false, msg: 'All fields must be filled in!' };
+    }
+    return { valid: true };
+  }
+
+  prepareRegisterInfo = () => {
+    const { firstName, lastName, email, username, password } = this.state;
+    return { name: { first: firstName, last: lastName }, email, username, password };
+  }
+
+  handleRegister = (event) => {
+    const validation = this.validateRegister();
+
+    if (!validation.valid) {
+      window.alert(validation.msg);
+      return;
+    }
+
+    const registerData = JSON.stringify(this.prepareRegisterInfo());
+    const component = this;
+
+    fetch(`${ENDPOINT}/register`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: registerData
+    })
+      .then(response => response.json())
+      .then(response => {
+        console.debug(JSON.stringify(response));
+        if (!response.success) {
+          throw new Error(response.reason);
+        }
+        window.alert('Succesfully registered! Please proceed to sign in.');
+        component.props.push('/signin');
+      })
+      .catch(err => {
+        console.error('Error! Could not register user.', err);
+        window.alert(`${err ? err + '! ' : ''}Unable to register user. Please try again.`);
+      });
+  }
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  // handleFirstNameChange = (event) => {
+  //   this.setState({ firstName: event.target.value });
+  // }
+
+  // handleLastNameChange = (event) => {
+  //   this.setState({ lastName: event.target.value });
+  // }
+
+  // handleUsernameChange = (event) => {
+  //   this.setState({ username: event.target.value });
+  // }
+
+  // handleEmailChange = (event) => {
+  //   this.setState({ email: event.target.value });
+  // }
+
+  // handlePasswordChange = (event) => {
+  //   this.setState({ password: event.target.value });
+  // }
+
+  render () {
+    const { classes } = this.props;
+
+    return (
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Register
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid container spacing={2}>
+              <TextEntry
                 name='firstName'
-                variant='outlined'
-                required
-                fullWidth
-                id='firstName'
                 label='First Name'
+                autoComplete='fname'
+                onChange={this.handleChange}
+                smOverride={6}
+                required
                 autoFocus
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant='outlined'
-                required
-                fullWidth
-                id='lastName'
-                label='Last Name'
+              <TextEntry
                 name='lastName'
+                label='Last Name'
                 autoComplete='lname'
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
+                onChange={this.handleChange}
+                smOverride={6}
                 required
-                fullWidth
-                id='email'
-                label='Email Address'
+              />
+              <TextEntry
+                name='userame'
+                label='Username'
+                autoComplete='username'
+                onChange={this.handleChange}
+                required
+              />
+              <TextEntry
                 name='email'
+                label='Email Address'
                 autoComplete='email'
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
+                onChange={this.handleChange}
                 required
-                fullWidth
+              />
+              <TextEntry
                 name='password'
                 label='Password'
                 type='password'
-                id='password'
                 autoComplete='current-password'
+                onChange={this.handleChange}
+                required
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value='allowExtraEmails' color='primary' />}
-                label='I want to receive inspiration, marketing promotions and updates via email.'
-              />
+            <Button
+              type='button'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+              onClick={this.handleRegister}
+            >
+              Register
+            </Button>
+            <Grid container justify='flex-end'>
+              <Grid item>
+                <Typography variant='body2'>
+                  <NavLink to='/signin'>Already have an account? Sign in</NavLink>
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-          <Grid container justify='flex-end'>
-            <Grid item>
-              <Link href='#' variant='body2'>
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
+          </form>
+        </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </Container>
+    );
+  }
 }
+
+Register.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default connect(null, { push })(withStyles(styles)(Register));

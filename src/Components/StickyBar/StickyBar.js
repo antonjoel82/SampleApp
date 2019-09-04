@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import NavMenu from '../NavMenu/NavMenu.js';
+
+import {
+  Search as SearchIcon,
+  AddCircle as AddIcon,
+  Home as HomeIcon,
+  AccountCircle as AccountIcon
+} from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -30,9 +37,13 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto'
+    [theme.breakpoints.up('md')]: {
+      marginLeft: theme.spacing(3)
+      // width: 'auto'
+    },
+    [theme.breakpoints.down('md')]: {
+      marginLeft: theme.spacing(3)
+      // width: 'auto'
     }
   },
   searchIcon: {
@@ -43,6 +54,21 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  buttonBar: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    width: '100%'
+  },
+  navIcon: {
+    width: theme.spacing(5),
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
   },
   inputRoot: {
     color: 'inherit'
@@ -86,10 +112,7 @@ function ElevationScroll (props) {
 }
 
 ElevationScroll.propTypes = {
-  children: PropTypes.node.isRequired,
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  window: PropTypes.func
+  children: PropTypes.node.isRequired
 };
 
 function StickyBar (props) {
@@ -101,7 +124,7 @@ function StickyBar (props) {
         <AppBar>
           <Toolbar>
             <NavMenu />
-            <Typography variant='h6'>The Ultimate Resource</Typography>
+            <Typography variant='h6'>UltiDB</Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -113,6 +136,23 @@ function StickyBar (props) {
                   input: classes.inputInput
                 }}
               />
+            </div>
+            <div className={classes.buttonBar}>
+              <div className={classes.navIcon}>
+                <IconButton color='inherit'>
+                  <AddIcon fontSize='medium' />
+                </IconButton>
+              </div>
+              <div className={classes.navIcon}>
+                <IconButton color='inherit'>
+                  <HomeIcon fontSize='medium' />
+                </IconButton>
+              </div>
+              <div className={classes.navIcon}>
+                <IconButton color='inherit'>
+                  <AccountIcon fontSize='medium' />
+                </IconButton>
+              </div>
             </div>
           </Toolbar>
         </AppBar>

@@ -1,24 +1,23 @@
-import { SIGN_IN, SIGN_OUT } from '../action-constants.js';
+import { SIGN_IN_SUCCESS, SIGN_IN_FAILED } from '../action-constants.js';
 
 const baseStateSignIn = {
   signedIn: false,
-  user: {}
+  user: null
 };
 
 export const signIn = (state = baseStateSignIn, action = {}) => {
   let user = null;
 
   switch (action.type) {
-    case SIGN_IN:
+    case SIGN_IN_SUCCESS:
       user = action.payload.user;
-      if (user.id) {
+      if (user && user.id) {
         return Object.assign({}, state, { signedIn: true, user: user });
-      } else {
-        window.alert('Credentials were not valid. Please try again!');
-        return state;
       }
-    case SIGN_OUT:
-      return Object.assign({}, state, { signedIn: false, user: {} });
+      return state;
+    case SIGN_IN_FAILED:
+      // TODO: do I need to do anything with action.payload.err?
+      return state;
     default:
       return state;
   }

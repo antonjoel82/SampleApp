@@ -4,8 +4,10 @@ import './index.css';
 import Root from './Components/Root/Root.js';
 import * as serviceWorker from './serviceWorker.js';
 import configureStore, { history } from './configureStore.js';
+import { INITIAL_STATE } from './Reducers/reducers.js';
 
-const store = configureStore(/* INITIAL STATE */);
+// Create the global Redux store
+const store = configureStore(INITIAL_STATE);
 
 ReactDOM.render(
   <Root store={store} history={history} />, document.getElementById('root')

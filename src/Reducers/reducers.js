@@ -9,3 +9,11 @@ export default function createRootReducer (history) {
     signIn
   });
 }
+
+export const INITIAL_STATE = {
+  signedIn: false,
+  user: null,
+  filters: [],
+  resources: {}, // id -> resource
+  activeResource: null // id
+};
