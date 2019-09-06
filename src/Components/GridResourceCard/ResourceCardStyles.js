@@ -2,12 +2,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStylesResourceCard = makeStyles(theme => ({
   card: {
-    maxWidth: 700,
-    minWidth: 325,
+    minWidth: '275px',
+    // maxWidth: '275px',
+    // width: '275px',
     textAlign: 'left',
     '&:hover': {
       boxShadow: '0 0.5rem 1rem 0 rgba(84, 84, 84, 0.6)'
     }
+  },
+  cardTitle: {
+    fontFamily: theme.typography.h1.fontFamily,
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.fontWeightBold
   },
   cardContent: {
     margin: theme.spacing(0.5),

@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import { makeStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import InputBase from '@material-ui/core/InputBase';
 import NavMenu from '../NavMenu/NavMenu.js';
 
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
+
 import {
-  Search as SearchIcon,
-  AddCircle as AddIcon,
-  Home as HomeIcon,
-  AccountCircle as AccountIcon
+  Search as SearchIcon
 } from '@material-ui/icons';
+import NavButtonBar from '../NavButtonBar/NavButtonBar.js';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -54,21 +55,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  buttonBar: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: '100%'
-  },
-  navIcon: {
-    width: theme.spacing(5),
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center'
   },
   inputRoot: {
     color: 'inherit'
@@ -137,23 +123,7 @@ function StickyBar (props) {
                 }}
               />
             </div>
-            <div className={classes.buttonBar}>
-              <div className={classes.navIcon}>
-                <IconButton color='inherit'>
-                  <AddIcon fontSize='medium' />
-                </IconButton>
-              </div>
-              <div className={classes.navIcon}>
-                <IconButton color='inherit'>
-                  <HomeIcon fontSize='medium' />
-                </IconButton>
-              </div>
-              <div className={classes.navIcon}>
-                <IconButton color='inherit'>
-                  <AccountIcon fontSize='medium' />
-                </IconButton>
-              </div>
-            </div>
+            <NavButtonBar />
           </Toolbar>
         </AppBar>
       </ElevationScroll>
@@ -162,4 +132,4 @@ function StickyBar (props) {
   );
 }
 
-export default StickyBar;
+export default connect(null, { push })(withStyles(useStyles)(StickyBar));

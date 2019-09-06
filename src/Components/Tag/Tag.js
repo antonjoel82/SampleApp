@@ -16,6 +16,10 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.primary.light,
       cursor: 'pointer'
     }
+  },
+  label: {
+    // fontSize: theme.typography.subtitle2.fontSize,
+    fontSize: '0.75rem' // TODO define a property for this
   }
 }));
 
@@ -28,7 +32,7 @@ const Tag = ({ tag }) => {
 
   return (
     <Box className={classes.wrapper} m={0.5} onClick={handleClick}>
-      <Typography variant='body2'>{tag}</Typography>
+      <Typography className={classes.label}>{tag}</Typography>
     </Box>
   );
 };

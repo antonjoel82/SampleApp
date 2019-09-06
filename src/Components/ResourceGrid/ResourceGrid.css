@@ -1,8 +1,0 @@
-.res-grid {
-	text-align: center;
-	display: grid;
-	grid-gap: 1rem;
-	grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
-	grid-template-rows: span 1;
-	padding: 1rem 3rem 1rem 3rem;
-}
