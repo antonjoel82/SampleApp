@@ -1,16 +1,23 @@
 import { SHOW_DIALOG, HIDE_DIALOG } from '../Actions/action-constants.js';
 
 const initialState = {
-  dialogType: null,
-  dialogProps: { open: false }
+  dialogs: []
+  // dialogs: [{ dialogProps: { open: true, message: 'Sample Error Message.' }, dialogType: 'alert' }]
+  // dialogType: null,
+  // dialogProps: { open: false }
 };
 
 export const dialog = (state = initialState, action = {}) => {
+  // Must clone the array because React uses shallow equality for state comparisons
+  const dialogs = [...state.dialogs];
+
   switch (action.type) {
     case SHOW_DIALOG:
-      return Object.assign({}, { dialogType: action.dialogType, dialogProps: action.dialogProps });
+      dialogs.push({ dialogType: action.dialogType, dialogProps: action.dialogProps });
+      return Object.assign({}, { dialogs });
     case HIDE_DIALOG:
-      return initialState;
+      dialogs.pop();
+      return Object.assign({}, { dialogs });
     default:
       return state;
   }

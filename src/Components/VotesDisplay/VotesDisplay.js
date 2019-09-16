@@ -20,7 +20,7 @@ const VotesDisplay = ({ rating, numVotes, readOnly }) => {
 
   return (
     <Box className={classes.flexWrapper}>
-      <Rating value={Math.round(Math.random() * 5)} precision='0.5' size='small' readOnly={!!!readOnly} />
+      <Rating value={Math.round(Math.random() * 5)} precision={0.5} size='small' readOnly={!!!readOnly} />
       <Typography className={classes.textComp} variant='subtitle2'>8,214 votes</Typography>
     </Box>
   );

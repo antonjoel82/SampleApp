@@ -23,15 +23,14 @@ const AddTagForm = (props) => {
   const handleInputChange = (updateFn, validator) => (event) => {
     const val = event.target.value;
 
-    if (!validator || (validator && validator(val))) {
-      updateFn(val);
-    }
+    validator && validator(val);
+    updateFn(val);
   };
 
   return (
 
     <div className={classes.root}>
-      <form>
+      <form autoComplete='off'>
         <Grid item container spacing={2} justify='center'>
           <Grid item container direction='row' alignContent='center' alignItems='center'>
             <TextEntry
@@ -74,7 +73,11 @@ const AddTagForm = (props) => {
 };
 
 AddTagForm.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  setLabel: PropTypes.func.isRequired,
+  setSummary: PropTypes.func.isRequired,
+  validateLabel: PropTypes.func.isRequired,
+  labelIsValid: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(AddTagForm);

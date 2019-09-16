@@ -2,11 +2,12 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
+import PropTypes from 'prop-types';
 import BaseDialog from './BaseDialog';
 
-const useStyles = theme => ({
-  root: {
-    display: 'flex'
+const styles = theme => ({
+  container: {
+    paddingTop: '0 !important'
   }
 });
 
@@ -15,7 +16,7 @@ const ConfirmDialog = (props) => {
     // Calls passed-in handleOk
     if (props.handleOk) {
       props.handleOk();
-      // return;
+      return;
     }
     props.handleClose();
   };
@@ -24,7 +25,7 @@ const ConfirmDialog = (props) => {
     // Calls passed-in handleOk
     if (props.handleCancel) {
       props.handleCancel();
-      // return;
+      return;
     }
     props.handleClose();
   };
@@ -39,4 +40,9 @@ const ConfirmDialog = (props) => {
     />
   );
 };
-export default connect(null, { push })(withStyles(useStyles)(ConfirmDialog));
+
+ConfirmDialog.propTypes = {
+  title: PropTypes.string.isRequired
+};
+
+export default connect(null, { push })(withStyles(styles)(ConfirmDialog));

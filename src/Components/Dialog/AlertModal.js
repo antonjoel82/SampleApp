@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseDialog from './BaseDialog';
+import PropTypes from 'prop-types';
 
 const AlertModal = (props) => {
   const { open, title, message } = props;
@@ -13,4 +14,9 @@ const AlertModal = (props) => {
     />
   );
 };
+
+AlertModal.propTypes = {
+  message: PropTypes.string.isRequired
+};
+
 export default AlertModal;

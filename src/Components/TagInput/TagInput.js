@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 // import { connect } from 'react-redux';
 // import { push } from 'connected-react-router';
 
@@ -17,14 +17,14 @@ import { Box } from '@material-ui/core';
 
 const tags = ['Forehand', 'Backhand', 'Throwing', 'Zone', 'Backing'];
 
-const useStyles = makeStyles(theme => ({
+const styles = (theme) => ({
   root: {
     width: 'auto',
     borderWidth: '1px',
     borderRadius: '2px',
     borderColor: theme.palette.grey[500]
   }
-}));
+});
 
 class TagInput extends React.Component {
   constructor (props) {
@@ -72,5 +72,5 @@ class TagInput extends React.Component {
     );
   }
 }
-// export default connect(null, { push })(withStyles(useStyles)(TagInput));
-export default (withStyles(useStyles)(TagInput));
+// export default connect(null, { push })(withStyles(styles)(TagInput));
+export default (withStyles(styles)(TagInput));

@@ -8,6 +8,8 @@ import {
   AccountCircle as AccountIcon
 } from '@material-ui/icons';
 import RoutingButton from '../RoutingButton/RoutingButton';
+import OpenDialogButton from '../OpenDialogButton/OpenDialogButton';
+import { DialogTypes } from '../Dialog/dialog-constants';
 
 const useStyles = makeStyles(theme => ({
   buttonBar: {
@@ -33,7 +35,10 @@ const NavButtonBar = () => {
   return (
     <Box className={classes.buttonBar}>
       <div className={classes.navIcon}>
-        <RoutingButton icon={AddIcon} route='/upload' />
+        <OpenDialogButton
+          icon={AddIcon}
+          dialogType={DialogTypes.upload}
+        />
       </div>
       <div className={classes.navIcon}>
         <RoutingButton icon={HomeIcon} route='/' />

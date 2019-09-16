@@ -46,7 +46,7 @@ class App extends React.Component {
           <PropsRoute exact path='/' component={ResourceGrid} resources={resources} />
           <Route path='/register' component={Register} />
           <PropsRoute path='/signin' component={SignIn} onSignIn={onSignIn} />
-          <PropsRoute path='/upload' component={Upload} />
+          {/* <PropsRoute path='/upload' component={Upload} /> */}
           <Route component={null} />
         </Switch>
         {/* {
