@@ -20,6 +20,7 @@ import TextEntry from '../TextEntry/TextEntry.js';
 
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
+// import { MAX_USERNAME_LENGTH } from '../../server-constants.js';
 
 promise.polyfill();
 
@@ -70,6 +71,11 @@ class Register extends React.Component {
       email: '',
       password: ''
     };
+
+    this.validateRegister = this.validateRegister.bind(this);
+    this.prepareRegisterInfo = this.prepareRegisterInfo.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   validateRegister = () => {
@@ -119,26 +125,6 @@ class Register extends React.Component {
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
-
-  // handleFirstNameChange = (event) => {
-  //   this.setState({ firstName: event.target.value });
-  // }
-
-  // handleLastNameChange = (event) => {
-  //   this.setState({ lastName: event.target.value });
-  // }
-
-  // handleUsernameChange = (event) => {
-  //   this.setState({ username: event.target.value });
-  // }
-
-  // handleEmailChange = (event) => {
-  //   this.setState({ email: event.target.value });
-  // }
-
-  // handlePasswordChange = (event) => {
-  //   this.setState({ password: event.target.value });
-  // }
 
   render () {
     const { classes } = this.props;

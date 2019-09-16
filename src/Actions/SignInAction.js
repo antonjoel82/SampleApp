@@ -1,4 +1,4 @@
-import { SIGN_IN_SUCCESS, SIGN_IN_FAILED, SIGN_OUT } from '../action-constants.js';
+import { SIGN_IN_SUCCESS, SIGN_IN_FAILED, SIGN_OUT } from './action-constants.js';
 import { ENDPOINT } from '../constants.js';
 
 import fetch from 'isomorphic-fetch';

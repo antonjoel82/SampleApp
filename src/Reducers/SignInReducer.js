@@ -1,4 +1,4 @@
-import { SIGN_IN_SUCCESS, SIGN_IN_FAILED } from '../action-constants.js';
+import { SIGN_IN_SUCCESS, SIGN_IN_FAILED } from '../Actions/action-constants.js';
 
 const baseStateSignIn = {
   signedIn: false,

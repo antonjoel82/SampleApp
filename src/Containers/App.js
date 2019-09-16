@@ -9,6 +9,8 @@ import PropsRoute from '../Components/PropsRoute/PropsRoute.js';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import Upload from '../Components/Upload/Upload';
+import DialogContainer from '../Components/DialogContainer/DialogContainer';
+import { showDialog, hideDialog } from '../Actions/DialogAction.js';
 
 const resources = [
   { id: 'sadas3r5234', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, src: 'https://www.youtube.com/embed/xlwL_vSsIPI' },
@@ -27,6 +29,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    showDialog: (dialogProps, dialogType) => dispatch(showDialog({ dialogProps, dialogType })),
+    hideDialog: () => dispatch(hideDialog()),
     push
   };
 };
@@ -50,6 +54,7 @@ class App extends React.Component {
             ? <ResourceGrid resources={resources} />
             : <SignIn onSignIn={onSignIn} />
         } */}
+        <DialogContainer />
       </div>
     );
   }

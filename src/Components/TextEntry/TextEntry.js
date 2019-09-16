@@ -4,18 +4,13 @@ import {
   Grid
 } from '@material-ui/core';
 
-const TextEntry = ({ name, label, type, autoComplete, onChange, smOverride, required, autoFocus }) => {
+const TextEntry = (props) => {
   return (
-    <Grid item xs={12} sm={smOverride}>
+    <Grid item xs={props.xs || 12} sm={props.smOverride}>
       <TextField
-        id={name}
-        name={name}
-        label={label}
-        type={type}
-        autoComplete={autoComplete}
-        onChange={onChange}
-        required={required}
-        autoFocus={autoFocus}
+        {...props}
+        id={props.name}
+        name={props.name}
         fullWidth
         variant='outlined'
       />

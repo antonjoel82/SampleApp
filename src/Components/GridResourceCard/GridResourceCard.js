@@ -20,6 +20,15 @@ const ResourceCard = ({ title, src, srcType, dateCreated }) => {
   const classes = useStylesResourceCard();
   const utilClasses = styleUtils();
 
+  const tags = {
+    forehand: { key: 'forehand', label: 'Forehand' },
+    throwing: { key: 'throwing', label: 'Throwing' },
+    distance: { key: 'distance', label: 'Distance' },
+    technique: { key: 'technique', label: 'Technique' },
+    rowan: { key: 'rowan', label: 'Rowan' },
+    wrap: { key: 'wrap', label: 'Wrap' }
+  };
+
   return (
     <Card className={classes.card}>
       <CardActions>
@@ -45,7 +54,7 @@ const ResourceCard = ({ title, src, srcType, dateCreated }) => {
         <Box className={classes.cardTextArea}>
           <Typography className={classes.cardTitle} noWrap>{title}</Typography>
         </Box>
-        <TagList tags={['Forehand', 'Throwing', 'Distance', 'Technique', 'Rowan', 'Wrap']} />
+        <TagList tags={tags} />
       </CardContent>
     </Card>
   );

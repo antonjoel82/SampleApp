@@ -26,7 +26,7 @@ class RoutingButton extends React.Component {
 
     return (
       <IconButton color='inherit' onClick={this.handleClick}>
-        {React.createElement(icon, { fontSize: 'medium' })}
+        {React.createElement(icon, { fontSize: 'default' })}
       </IconButton>
     );
   }

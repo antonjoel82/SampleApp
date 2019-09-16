@@ -3,6 +3,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import createRootReducer from './Reducers/reducers.js';
 import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
 
 const logger = createLogger();
 
@@ -15,6 +16,7 @@ export default function configureStore (preloadedState) {
     compose(
       applyMiddleware(
         routerMiddleware(history), // for dispatching history actions
+        thunk,
         logger
       )
     )
