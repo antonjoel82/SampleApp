@@ -13,7 +13,9 @@ const useStylesResourceCard = makeStyles(theme => ({
   cardTitle: {
     fontFamily: theme.typography.h1.fontFamily,
     fontSize: theme.typography.body1.fontSize,
-    fontWeight: theme.typography.fontWeightBold
+    fontWeight: theme.typography.fontWeightBold,
+    textDecoration: 'none',
+    color: theme.palette.common.black
   },
   cardContent: {
     margin: theme.spacing(0.5),

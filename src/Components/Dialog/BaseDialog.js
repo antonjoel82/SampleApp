@@ -1,10 +1,16 @@
 import React from 'react';
-import { DialogTitle, DialogContent, DialogContentText, Dialog, DialogActions, Button, Container } from '@material-ui/core';
+import { DialogTitle, DialogContent, DialogContentText, Dialog, DialogActions, Button, Container, withStyles } from '@material-ui/core';
+
+const styles = theme => ({
+  // Templated styles (ones used below, but not required in all dialogs)
+  container: {}
+});
 
 const BaseDialog = (props) => {
   const { id, classes, title, message, dialogBody, open, handleClose, handleCancel, handleOk, cancelLabel, okLabel, maxWidth, fullWidth } = props;
 
   /**
+   * Renders the body of the dialog (message and subcomponents).
    * If there is a dialogBody (children Component), wrap the whole content area in a container
    */
   const renderDialogContent = () => {
@@ -38,4 +44,4 @@ const BaseDialog = (props) => {
   );
 };
 
-export default BaseDialog;
+export default withStyles(styles)(BaseDialog);

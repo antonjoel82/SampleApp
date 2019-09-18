@@ -11,12 +11,16 @@ import {
   Share as ShareIcon
 } from '@material-ui/icons';
 
+import { NavLink } from 'react-router-dom';
+// import { connect } from 'react-redux';
+// import { push } from 'connected-react-router';
+
 import useStylesResourceCard from './ResourceCardStyles.js';
 import { styleUtils } from '../../style-utils.js';
 import CardMetadata from '../CardMetadata/CardMetadata.js';
 import TagList from '../TagList/TagList.js';
 
-const ResourceCard = ({ title, src, srcType, dateCreated }) => {
+const ResourceCard = ({ title, src, srcType, dateCreated, publicKey }) => {
   const classes = useStylesResourceCard();
   const utilClasses = styleUtils();
 
@@ -52,7 +56,9 @@ const ResourceCard = ({ title, src, srcType, dateCreated }) => {
       <CardContent className={classes.cardContent}>
         <CardMetadata />
         <Box className={classes.cardTextArea}>
-          <Typography className={classes.cardTitle} noWrap>{title}</Typography>
+          <NavLink to={`/${publicKey}`} className={classes.cardTitle}>
+            <Typography className={classes.cardTitle} noWrap>{title}</Typography>
+          </NavLink>
         </Box>
         <TagList tags={tags} />
       </CardContent>

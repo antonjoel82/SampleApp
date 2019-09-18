@@ -8,12 +8,12 @@ import Register from '../Components/Register/Register.js';
 import PropsRoute from '../Components/PropsRoute/PropsRoute.js';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import Upload from '../Components/Upload/Upload';
 import DialogContainer from '../Components/DialogContainer/DialogContainer';
 import { showDialog, hideDialog } from '../Actions/DialogAction.js';
+import Resource from '../Components/Resource/Resource';
 
 const resources = [
-  { id: 'sadas3r5234', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, src: 'https://www.youtube.com/embed/xlwL_vSsIPI' },
+  { id: 'sadas3r5234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, src: 'https://www.youtube.com/embed/xlwL_vSsIPI' },
   { id: 'abc', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abcd', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abce', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' },
   { id: 'abcf', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abcg', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abch', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' },
   { id: 'abci', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abcj', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abck', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }
@@ -46,7 +46,7 @@ class App extends React.Component {
           <PropsRoute exact path='/' component={ResourceGrid} resources={resources} />
           <Route path='/register' component={Register} />
           <PropsRoute path='/signin' component={SignIn} onSignIn={onSignIn} />
-          {/* <PropsRoute path='/upload' component={Upload} /> */}
+          <PropsRoute path='/:resourceKey' component={Resource} />
           <Route component={null} />
         </Switch>
         {/* {

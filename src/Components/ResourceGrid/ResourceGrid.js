@@ -12,13 +12,15 @@ class ResourceGrid extends React.Component {
         <Grid container spacing={3}>
           {
             this.props.resources.map((res, i) => {
+              const { id, publicKey, title, src, srcType } = res;
               return (
-                <Grid key={res.id} item xs>
+                <Grid key={id} item xs>
                   <GridResourceCard
-                    key={res.id}
-                    title={res.title}
-                    src={res.src}
-                    srcType={res.srcType}
+                    key={id}
+                    title={title}
+                    src={src}
+                    srcType={srcType}
+                    publicKey={publicKey}
                   />
                 </Grid>
               );
