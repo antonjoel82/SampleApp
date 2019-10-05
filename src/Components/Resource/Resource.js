@@ -38,8 +38,8 @@ class Resource extends React.Component {
         title: 'Ian Sweeney for Callahan 2019',
         summary: 'SLOCORE nominates Ian Sweeney for the 2019 USAU College Callahan award',
         uploadDate: 'September 16, 2019',
-        source: 'YouTube',
-        src: 'https://www.youtube.com/embed/xlwL_vSsIPI',
+        srcName: 'YouTube',
+        link: 'https://www.youtube.com/embed/xlwL_vSsIPI',
         srcType: SourceType.VIDEO
       }
     }));
@@ -51,7 +51,7 @@ class Resource extends React.Component {
 
   render () {
     const { classes } = this.props;
-    const { src, srcType, title, uploadDate, source } = this.state.resource;
+    const { link, srcType, title, uploadDate, srcName, publicKey } = this.state.resource;
 
     return (
       <Box px={6}>
@@ -59,10 +59,10 @@ class Resource extends React.Component {
           <CssBaseline />
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <ResourceTitleBar title={title} uploadDate={uploadDate} source={source} />
+              <ResourceTitleBar title={title} uploadDate={uploadDate} source={srcName} />
             </Grid>
             <Grid item xs={12}>
-              <ResourceMedia srcType={srcType} src={src} />
+              <ResourceMedia srcType={srcType} src={link} title={`media-${publicKey}`}/>
             </Grid>
             <Grid item xs={12}>
               <ResourceInfo resource={this.state.resource} />

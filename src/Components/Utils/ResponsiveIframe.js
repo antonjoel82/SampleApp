@@ -12,12 +12,13 @@ const styles = (theme) => ({
 const ResponsiveIframe = (props) => {
   const { classes } = props;
   return (
-    <iframe className={classes.myFrame} {...props} />
+    <iframe title={props.title} className={classes.myFrame} {...props} />
   );
 };
 
 ResponsiveIframe.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(ResponsiveIframe);

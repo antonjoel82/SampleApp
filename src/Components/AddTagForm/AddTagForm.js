@@ -37,7 +37,6 @@ const AddTagForm = (props) => {
               name='label'
               label='Label'
               onChange={handleInputChange(setLabel, validateLabel)}
-              inputProps={{ maxLength: MAX_TAG_LABEL_LENGTH }}
               required
               autoFocus
               // xs={10}
@@ -48,7 +47,8 @@ const AddTagForm = (props) => {
                     TrueIcon={CheckCircleIcon}
                     FalseIcon={ErrorIcon}
                   />
-                )
+                ),
+                maxLength: MAX_TAG_LABEL_LENGTH
               }}
             />
             {/* <Grid item xs justify='center' alignContent='center' >

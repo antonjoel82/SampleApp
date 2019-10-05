@@ -17,6 +17,7 @@ import {
   Search as SearchIcon
 } from '@material-ui/icons';
 import NavButtonBar from '../NavButtonBar/NavButtonBar.js';
+import { IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -45,13 +46,14 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(3)
       // width: 'auto'
-    }
+    },
+    display: 'flex',
+    flexDirection: 'row'
   },
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
     position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
@@ -101,8 +103,22 @@ ElevationScroll.propTypes = {
   children: PropTypes.node.isRequired
 };
 
+const ENTER_KEY_CODE = 13;
+
 function StickyBar (props) {
   const classes = useStyles();
+
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const handleSearchSubmit = () => {
+    props.push(`/search?${searchQuery}`);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.charCode === ENTER_KEY_CODE) {
+      handleSearchSubmit();
+    }
+  }
 
   return (
     <>
@@ -112,16 +128,20 @@ function StickyBar (props) {
             <NavMenu />
             <Typography variant='h6'>UltiDB</Typography>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
               <InputBase
                 placeholder='Search…'
+                onChange={(event) => setSearchQuery(event.target.value)}
+                onKeyPress={handleKeyPress}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
               />
+              <div className={classes.searchIcon}>
+                <IconButton onClick={handleSearchSubmit} color='inherit'>
+                  <SearchIcon />
+                </IconButton>
+              </div>
             </div>
             <NavButtonBar />
           </Toolbar>

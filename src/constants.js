@@ -16,4 +16,7 @@ export const UserStatus = {
   GUEST: 'GUEST'
 };
 
+export const THUMBNAIL_WIDTH = '264px';
+export const GRID_CARD_WIDTH = '280px';
+
 export const ENDPOINT = 'http://localhost:3001';

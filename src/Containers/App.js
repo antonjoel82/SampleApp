@@ -11,12 +11,20 @@ import { push } from 'connected-react-router';
 import DialogContainer from '../Components/DialogContainer/DialogContainer';
 import { showDialog, hideDialog } from '../Actions/DialogAction.js';
 import Resource from '../Components/Resource/Resource';
+import SearchPage from '../Components/SearchPage/SearchPage';
+import NotFoundPage from '../Components/NotFoundPage/NotFoundPage';
 
 const resources = [
-  { id: 'sadas3r5234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, src: 'https://www.youtube.com/embed/xlwL_vSsIPI' },
-  { id: 'abc', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abcd', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abce', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' },
-  { id: 'abcf', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abcg', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abch', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' },
-  { id: 'abci', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abcj', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }, { id: 'abck', src: 'https://www.youtube.com/embed/xlwL_vSsIPI', title: 'Ultimate Title Here' }
+  { id: 'sadas', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sadasr5234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sadas5234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sadas234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sadas34', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sadas4', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sadar5234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sas3r5234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sdas3r5234', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
+  { id: 'sd3r534', publicKey: 'PX234Yc', title: 'Ian Sweeney for Callahan 2019', srcType: SourceType.VIDEO, link: 'https://www.youtube.com/embed/xlwL_vSsIPI', thumbnailType: 'link', thumbnail: 'https://img.youtube.com/vi/xlwL_vSsIPI/mqdefault.jpg' },
 ];
 
 const mapStateToProps = (state) => {
@@ -44,10 +52,12 @@ class App extends React.Component {
         <StickyBar />
         <Switch>
           <PropsRoute exact path='/' component={ResourceGrid} resources={resources} />
+          <PropsRoute exact path='/profile' component={NotFoundPage} message='Profile page coming soon...' />
+          <PropsRoute exact path='/search' component={SearchPage} />
           <Route path='/register' component={Register} />
           <PropsRoute path='/signin' component={SignIn} onSignIn={onSignIn} />
-          <PropsRoute path='/:resourceKey' component={Resource} />
-          <Route component={null} />
+          <PropsRoute path='/r/:resourceKey' component={Resource} />
+          <PropsRoute component={NotFoundPage} message={'We\'re sorry! The page you are looking for does not exist.'} />
         </Switch>
         {/* {
           signedIn

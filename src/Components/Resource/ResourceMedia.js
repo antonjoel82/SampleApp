@@ -13,12 +13,13 @@ const styles = (theme) => ({
 });
 
 const ResourceMedia = (props) => {
-  const { classes, srcType, src } = props;
+  const { classes, srcType, src, title } = props;
 
   const renderVideo = () => {
     return (
       <AspectRatio ratio={16 / 9}>
         <ResponsiveIframe
+          title={title}
           src={src}
           scrolling='no'
           allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
@@ -54,9 +55,9 @@ const ResourceMedia = (props) => {
   };
 
   return (
-    // <div className={classes.root}>
-    renderMedia()
-    // </div>
+    <div className={classes.root}>
+      {renderMedia()}
+    </div>
   );
 };
 

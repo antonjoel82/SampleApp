@@ -157,7 +157,6 @@ class Upload extends React.Component {
                   label='Link'
                   onChange={this.handleInputChange}
                   required
-                  autoFocus
                 />
                 {
                   resourceType === 'video' &&

@@ -3,24 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.3.3",
-    "@material-ui/icons": "^4.2.1",
-    "@material-ui/lab": "^4.0.0-alpha.25",
-    "@material-ui/styles": "^4.3.3",
+    "@material-ui/core": "^4.5.0",
+    "@material-ui/icons": "^4.4.3",
+    "@material-ui/lab": "^4.0.0-alpha.28",
+    "@material-ui/styles": "^4.5.0",
     "braces": "^3.0.2",
     "connected-react-router": "^6.5.2",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
     "material-ui-chip-input": "^1.0.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "material-ui-image": "^3.2.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
-    "react-router-dom": "^5.0.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "semistandard": "^14.0.1"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,10 +32,17 @@
     "parser": "babel-eslint"
   },
   "semistandard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "env": [
+      "jest",
+      "enzyme"
+    ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "env": {
+      "jest": true
+    }
   },
   "browserslist": {
     "production": [
@@ -49,5 +56,15 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.2",
+    "semistandard": "^14.2.0"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  }
 }

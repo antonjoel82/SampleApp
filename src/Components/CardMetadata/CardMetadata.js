@@ -15,9 +15,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CardMetadata = () => {
+const CardMetadata = (props) => {
   const classes = useStyles();
 
+  // TODO: add appropriate props to populate the subcomponents!
   return (
     <Box className={classes.metaContainer}>
       <VotesDisplay />

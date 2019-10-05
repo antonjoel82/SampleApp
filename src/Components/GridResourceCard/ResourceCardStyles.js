@@ -1,10 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { GRID_CARD_WIDTH } from '../../constants.js';
 
 const useStylesResourceCard = makeStyles(theme => ({
   card: {
-    minWidth: '275px',
+    // minWidth: '275px',
     // maxWidth: '275px',
-    // width: '275px',
+    width: GRID_CARD_WIDTH,
     textAlign: 'left',
     '&:hover': {
       boxShadow: '0 0.5rem 1rem 0 rgba(84, 84, 84, 0.6)'

@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Box from '@material-ui/core/Box';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
@@ -12,17 +11,17 @@ import {
 } from '@material-ui/icons';
 
 import { NavLink } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import { push } from 'connected-react-router';
+import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
 
 import useStylesResourceCard from './ResourceCardStyles.js';
-import { styleUtils } from '../../style-utils.js';
 import CardMetadata from '../CardMetadata/CardMetadata.js';
 import TagList from '../TagList/TagList.js';
+import ResourceThumbnail from '../ResourceThumbnail/ResourceThumbnail.js';
 
-const ResourceCard = ({ title, src, srcType, dateCreated, publicKey }) => {
+const GridResourceCard = (props) => {
+  const { title, srcType, publicKey, thumbnail, thumbnailType } = props.resource;
   const classes = useStylesResourceCard();
-  const utilClasses = styleUtils();
 
   const tags = {
     forehand: { key: 'forehand', label: 'Forehand' },
@@ -31,6 +30,10 @@ const ResourceCard = ({ title, src, srcType, dateCreated, publicKey }) => {
     technique: { key: 'technique', label: 'Technique' },
     rowan: { key: 'rowan', label: 'Rowan' },
     wrap: { key: 'wrap', label: 'Wrap' }
+  };
+
+  const navToResource = (event) => {
+    props.push(`/r/${publicKey}`);
   };
 
   return (
@@ -43,20 +46,26 @@ const ResourceCard = ({ title, src, srcType, dateCreated, publicKey }) => {
           <ShareIcon />
         </IconButton>
       </CardActions>
-      <Box className={utilClasses.respContainer}>
-        <CardMedia
+      {/* <Box className={utilClasses.respContainer}> */}
+        {/* <CardMedia
           className={utilClasses.respIframe}
           component='iframe'
           src={src}
-          title={title /* update this with proper resource title */}
+          title={title}
           allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen
+        /> */}
+        <ResourceThumbnail
+          thumbnailType={thumbnailType}
+          thumbnail={thumbnail}
+          srcType={srcType}
+          onClick={navToResource}
         />
-      </Box>
+      {/* </Box> */}
       <CardContent className={classes.cardContent}>
         <CardMetadata />
         <Box className={classes.cardTextArea}>
-          <NavLink to={`/${publicKey}`} className={classes.cardTitle}>
+          <NavLink to={`/r/${publicKey}`} className={classes.cardTitle}>
             <Typography className={classes.cardTitle} noWrap>{title}</Typography>
           </NavLink>
         </Box>
@@ -65,4 +74,4 @@ const ResourceCard = ({ title, src, srcType, dateCreated, publicKey }) => {
     </Card>
   );
 };
-export default ResourceCard;
+export default connect(null, { push })(GridResourceCard);

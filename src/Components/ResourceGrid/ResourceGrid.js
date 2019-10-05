@@ -4,24 +4,17 @@ import GridResourceCard from '../GridResourceCard/GridResourceCard.js';
 
 import { Grid } from '@material-ui/core';
 
-class ResourceGrid extends React.Component {
-  render () {
+const ResourceGrid = ({ resources }) => {
+    const resArr = resources || [];
+
     return (
-      // <Box className='res-grid' >
       <Box px={10} py={3}>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {
-            this.props.resources.map((res, i) => {
-              const { id, publicKey, title, src, srcType } = res;
+            resArr.map((resource, i) => {
               return (
-                <Grid key={id} item xs>
-                  <GridResourceCard
-                    key={id}
-                    title={title}
-                    src={src}
-                    srcType={srcType}
-                    publicKey={publicKey}
-                  />
+                <Grid key={i /*resource.id*/} item>
+                  <GridResourceCard key={i /*resource.id*/} resource={resource}/>
                 </Grid>
               );
             })
@@ -29,6 +22,5 @@ class ResourceGrid extends React.Component {
         </Grid>
       </Box>
     );
-  }
-}
+};
 export default ResourceGrid;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ConfirmDialog from './ConfirmDialog';
 import Upload from '../Upload/Upload';
 
@@ -19,10 +18,6 @@ const UploadDialog = (props) => {
       title='Upload'
     />
   );
-};
-
-UploadDialog.propTypes = {
-
 };
 
 const mapDispatchToProps = (dispatch) => {
